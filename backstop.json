@@ -1,76 +1,31 @@
-{
-  "basicScenario": {
-    "label": "",
-    "url": "http://localhost:8080/index.html",
-    "referenceUrl": "https://mate-academy.github.io/layout_solutions",
-    "readyEvent": "",
-    "readySelector": "",
-    "delay": 1000,
-    "hideSelectors": [
-      "[data-qa-hidden]"
-    ],
-    "removeSelectors": [
-      "[data-qa-remove]"
-    ],
-    "hoverSelector": "",
-    "clickSelector": "",
-    "postInteractionWait": 0,
-    "selectors": "",
-    "selectorExpansion": true,
-    "expect": 0,
-    "misMatchThreshold": 1,
-    "requireSameDimensions": false
-  },
-  "viewports": [
-    {
-      "name": "custom-size",
-      "width": 200,
-      "height": 50
-    }
-  ],
-  "scenarios": [
-    {
-      "label": "Entire document",
-      "url": "http://localhost:8080/index.html",
-      "referenceUrl": "https://mate-academy.github.io/layout_solutions/hello-world/",
-      "readyEvent": "",
-      "readySelector": "",
-      "delay": 1000,
-      "hideSelectors": [
-        "[data-qa-hidden]"
-      ],
-      "removeSelectors": [
-        "[data-qa-remove]"
-      ],
-      "hoverSelector": "",
-      "clickSelector": "",
-      "postInteractionWait": 0,
-      "selectors": "",
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 1,
-      "requireSameDimensions": false
-    }
-  ],
-  "paths": {
-    "bitmaps_reference": "backstop_data/bitmaps_reference",
-    "bitmaps_test": "backstop_data/bitmaps_test",
-    "engine_scripts": "backstop_data/engine_scripts",
-    "html_report": "backstop_data/html_report",
-    "ci_report": "backstop_data/ci_report"
-  },
-  "report": [
-    "browser"
-  ],
-  "engine": "puppeteer",
-  "engineOptions": {
-    "args": [
-      "--no-sandbox"
-    ]
-  },
-  "asyncCaptureLimit": 5,
-  "asyncCompareLimit": 50,
-  "debug": false,
-  "debugWindow": false,
-  "fileNameTemplate": "{scenarioLabel}"
-}
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run backstop test
+        run: npx backstop test
+      - name: Setup pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './src'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

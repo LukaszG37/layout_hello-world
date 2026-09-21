@@ -18,7 +18,7 @@ const getSiteBody = (startWord, finishWord) => {
     lastIndex + finishWord.length,
   );
 
-const siteBody = childProcess.execFileSync('curl google.com', [url]).toString();
+  const siteBody = childProcess.execFileSync('curl', [url]).toString();
 
   return siteBody;
 };

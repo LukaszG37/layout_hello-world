@@ -1,31 +1,18 @@
-name: Deploy
-on:
-  push:
-    branches:
-      - master
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install dependencies
-        run: npm ci
-      - name: Run backstop test
-        run: npx backstop test
-      - name: Setup pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './src'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+{
+  "id": "html_test",
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Hello World Page",
+      "url": "https://LukaszG37.github.io/layout_hello-world/",
+      "referenceUrl": "https://mate-academy.github.io/layout_hello-world/",
+      "expect": 0
+    }
+  ]
+}

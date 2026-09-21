@@ -1,5 +1,6 @@
 {
   "id": "html_test",
+  "extends": "@mate-academy/backstop-config",
   "viewports": [
     {
       "label": "desktop",
@@ -13,11 +14,5 @@
       "url": "https://LukaszG37.github.io/layout_hello-world/",
       "referenceUrl": "https://mate-academy.github.io/layout_hello-world/"
     }
-  ],
-  "paths": {
-    "bitmapsReference": "backstop_data/bitmaps_reference",
-    "bitmapsTest": "backstop_data/bitmaps_test",
-    "htmlReport": "backstop_data/html_report",
-    "jsonReport": "backstop_data/json_report"
-  }
+  ]
 }

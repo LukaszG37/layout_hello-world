@@ -8,13 +8,12 @@
     }
   ],
   "scenarios": [
-  {
-    "label": "Hello World Page",
-    "url": "https://LukaszG37.github.io/layout_hello-world/",
-    "referenceUrl": "https://mate-academy.github.io/layout_hello-world/"
-  }
-]
-
+    {
+      "label": "Hello World Page",
+      "url": "https://LukaszG37.github.io/layout_hello-world/",
+      "referenceUrl": "https://mate-academy.github.io/layout_hello-world/"
+    }
+  ],
   "paths": {
     "bitmapsReference": "backstop_data/bitmaps_reference",
     "bitmapsTest": "backstop_data/bitmaps_test",
